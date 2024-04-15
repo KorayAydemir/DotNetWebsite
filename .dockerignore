@@ -1,0 +1,4 @@
+.gitignore
+.git/
+Dockerfile
+frontend/node_modules
