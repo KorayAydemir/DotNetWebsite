@@ -2,3 +2,5 @@
 .git/
 Dockerfile
 frontend/node_modules
+backend/wwwroot
+backend/publish
