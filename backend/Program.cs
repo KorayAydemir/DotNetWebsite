@@ -1,6 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+//using Scriban;
 
-var builder = WebApplication.CreateBuilder(args);
+var webApplicationOptions = new WebApplicationOptions
+{
+    Args = args,
+    WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "src")
+};
+
+var builder = WebApplication.CreateBuilder(webApplicationOptions);
+
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -12,18 +20,19 @@ builder.Services.AddOpenApiDocument(config =>
     config.Version = "v1";
 });
 
+
 var app = builder.Build();
 
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseOpenApi();
-    app.UseSwaggerUi(config =>
-    {
-        config.DocumentTitle = "TodoAPI";
-        config.Path = "/swagger";
-        config.DocumentPath = "/swagger/{documentName}/swagger.json";
-        config.DocExpansion = "list";
-    });
+app.UseOpenApi();
+app.UseSwaggerUi(config =>
+{
+    config.DocumentTitle = "TodoAPI";
+    config.Path = "/swagger";
+    config.DocumentPath = "/swagger/{documentName}/swagger.json";
+    config.DocExpansion = "list";
+});
 //}
 
 app.UseHttpsRedirection();
@@ -32,7 +41,9 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.MapGet("/todoitems", async (TodoDb db) =>
-    await db.Todos.ToListAsync());
+{
+    return await db.Todos.ToListAsync();
+});
 
 app.MapGet("/todoitems/complete", async (TodoDb db) =>
     await db.Todos.Where(t => t.IsComplete).ToListAsync());
@@ -53,4 +64,20 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 
 app.Run();
 
-
+//var inputTemplateAsText = "My name is {{ name }}";
+//
+//var templatePath = "./wwwroot/index.html";
+//
+//var template = Template.Parse(File.ReadAllText(templatePath), templatePath);
+//
+//if (template.HasErrors)
+//{
+//    foreach (var error in template.Messages)
+//    {
+//        Console.WriteLine("Error: ", error);
+//    }
+//    throw new Exception("Template has errors.");
+//}
+//
+//var result = template.Render(new { name = "Koray" });
+//Console.WriteLine(result);

@@ -4,14 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>ecommerce</title>
-        <link href="./tailwind/index.css" rel="stylesheet" />
+        <script src="./index.js" defer></script>
+        <link href="./tailwind.css" rel="stylesheet" />
     </head>
-    <body>
-        <div class="mt-20">testa123</div>
+    <body class="bg-[#0e0f10]">
         <header
-            class="flex flex-row justify-between h-14 items-center bg-[#0b0c0d] z-30 relative mx-auto max-w-[1590px] px-[20px] w-full"
+            class="flex flex-row justify-between h-14 items-center bg-[#0b0c0d] z-20 relative mx-auto max-w-[1590px] px-[20px] w-full"
         >
-            <div class="flex flex-row">
+            <a href="/" class="flex flex-row">
                 <img
                     alt="logo"
                     loading="lazy"
@@ -20,9 +20,9 @@
                     decoding="async"
                     data-nimg="1"
                     style="color: transparent"
-                    src="/images/ow_logo.svg"
+                    src="./public/images/ow_logo.svg"
                 /><span class="ml-1 hidden md:block text-white">OVERWATCH</span>
-            </div>
+            </a>
             <div class="lg:hidden">
                 <input
                     class="rounded-full max-w-sm m-0-auto border-2 border-gray-500 bg-[#2b2a33] py-0.5 pl-2 text-white"
@@ -65,6 +65,7 @@
                     </svg>
                 </div>
                 <div
+                    id="show-basket"
                     class="ml-2 flex items-center justify-between bg-[#9b3b2f4f] px-2 w-[4.5rem] py-1 rounded-md"
                 >
                     <svg
@@ -80,25 +81,189 @@
                         <path
                             d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z"
                         ></path></svg
-                    ><span class="text-white font-bold">14</span>
-                </div>
-                <button class="ml-2 lg:hidden">
-                    <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 512 512"
-                        class="block my-auto h-full text-xl text-white"
-                        height="1em"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
+                    ><span id="basket-number" class="text-white font-bold"
+                        >0</span
                     >
-                        <path
-                            d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"
-                        ></path>
-                    </svg>
-                </button>
+                </div>
+
+                <div class="ml-2 lg:hidden mt-1">
+                    <input
+                        id="toggle-main-menu"
+                        type="checkbox"
+                        class="peer/main-menu absolute w-[1.2em] h-[1.2em] opacity-0"
+                    />
+                    <div>
+                        <svg
+                            stroke="currentColor"
+                            fill="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 512 512"
+                            class="block my-auto h-full text-xl text-white"
+                            height="1em"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <nav
+                        class="transition-[grid-template-rows] grid grid-rows-[0fr] peer-checked/main-menu:grid-rows-[1fr] w-screen bg-[#141416] transition- duration-500 ease-in-out lg:hidden right-0 top-14 absolute drop-shadow-lg z-20"
+                    >
+                        <menu class="overflow-hidden">
+                            <ul class="text-white flex flex-col items-center">
+                                <li class="py-2">New &amp; Featured</li>
+                                <li class="py-2">Men</li>
+                                <li class="py-2">Women</li>
+                                <li class="py-2">Kids</li>
+                            </ul>
+                        </menu>
+                    </nav>
+                </div>
             </div>
         </header>
+
+        <section class="mt-6">
+            <div class="mx-auto lg:max-w-[1590px] sm:max-w-[700px] px-4 pb-8">
+                <div class="flex flex-col">
+                    <div
+                        class="py-4 px-2 flex flex-row justify-between items-center"
+                    >
+                        <h2 class="font-bold text-white text-xl mb-2 inline">
+                            New (500)
+                        </h2>
+                        <div class="flex">
+                            <div class="flex flex-row mr-2">
+                                <span class="text-white mr-1">Filters</span
+                                ><svg
+                                    stroke="currentColor"
+                                    fill="currentColor"
+                                    stroke-width="0"
+                                    viewBox="0 0 512 512"
+                                    class="text-white text-xl my-auto"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M16 120h480v48H16zm80 112h320v48H96zm96 112h128v48H192z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div class="flex flex-row inline">
+                                <span class="text-white mr-1">Sort By</span
+                                ><svg
+                                    stroke="currentColor"
+                                    fill="currentColor"
+                                    stroke-width="0"
+                                    viewBox="0 0 24 24"
+                                    class="text-white text-xl my-auto"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g>
+                                        <path
+                                            fill="none"
+                                            d="M0 0h24v24H0z"
+                                        ></path>
+                                        <path
+                                            d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row">
+                        <aside
+                            class="flex flex-col w-1/6 ml-auto px-2 text-white lg:block hidden"
+                        >
+                            <div
+                                class="max-h-80 overflow-y-scroll leading-loose"
+                            >
+                                <div class="font-bold">smartphones</div>
+                                <div class="font-bold">laptops</div>
+                                <div class="font-bold">fragrances</div>
+                                <div class="font-bold">skincare</div>
+                                <div class="font-bold">groceries</div>
+                                <div class="font-bold">home-decoration</div>
+                            </div>
+                            <div
+                                class="before:absolute before:-top-3 before:left-0 before:w-full before:h-[1px] before:bg-white relative mt-12 w-11/12"
+                            >
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold text-lg m-0">
+                                        Gender
+                                    </h3>
+                                    <svg
+                                        stroke="currentColor"
+                                        fill="currentColor"
+                                        stroke-width="0"
+                                        viewBox="0 0 24 24"
+                                        class="my-auto text-xl"
+                                        height="1em"
+                                        width="1em"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <g>
+                                            <path
+                                                fill="none"
+                                                d="M0 0h24v24H0z"
+                                            ></path>
+                                            <path
+                                                d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"
+                                            ></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                        </aside>
+                        <div
+                            id="products"
+                            class="flex-1 grid grid-cols-1 gap-y-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 m-0"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div
+            id="basket-modal"
+            class="hidden fixed top-[7vh] mx-auto inset-x-0 sm:w-[600px] w-[450px] bg-slate-800 px-2 rounded-md z-20 text-white overflow-y-auto h-4/6"
+        >
+            <div class="px-10">
+                <ul id="basket-products"></ul>
+                <div class="sticky bottom-0 h-auto bg-slate-800 py-4">
+                    <div class="flex justify-between bg-black p-3 rounded-lg">
+                        <span>Toplam Fiyat</span
+                        ><span id="total-price">4145.00</span>
+                    </div>
+                    <div class="flex justify-between mt-4">
+                        <button
+                            id="clear-basket"
+                            class="bg-red-800 p-3 rounded-md"
+                        >
+                            Sepeti Boşalt
+                        </button>
+                        <div>
+                            <button
+                                id="close-basket"
+                                class="bg-red-800 p-3 mr-6 rounded-md"
+                            >
+                                Kapat</button
+                            ><button class="bg-green-800 p-3 rounded-md">
+                                <a href="checkout.html">Satın Al</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            id="backdrop"
+            class="z-10 bg-black absolute w-screen h-screen inset-0 opacity-40 hidden"
+        ></div>
     </body>
 </html>

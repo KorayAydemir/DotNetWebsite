@@ -2,13 +2,17 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.0",
+    "shx": "^0.3.4",
     "tailwindcss": "^3.4.3"
   },
   "scripts": {
-    "dev": "concurrently \"npm run build\" \"npm run start-server\"",
+    "dev": "concurrently \"npm:watch-*\" ",
+    "watch-tailwind": "npx tailwindcss -i ./src/index.css -o ./src/tailwind.css --watch",
+    "watch-fe": "nodemon --watch src --ext html,js --exec \"shx mkdir -p ../backend/wwwroot/src && shx mkdir -p ../backend/wwwroot/dist && shx cp -r ./src/* ../backend/wwwroot/src && shx cp -r ./dist/* ../backend/wwwroot/dist\"",
+    "watch-be": "dotnet watch --project ../backend",
+
+    "start-miniserver": "miniserve . --index src/index.html",
     "build": "npm run build-tailwind",
-    "start-server": "miniserve . --index src/index.html",
-    "build-tailwind": "npx tailwindcss -i ./src/index.css -o ../backend/wwwroot/tailwind/index.css --minify",
-    "watch-tailwind": "npx tailwindcss -i ./src/index.css -o ../backend/wwwroot/tailwind/index.css --minify --watch"
+    "build-tailwind": "npx tailwindcss -i ./src/index.css -o ./src/tailwind.css --minify"
   }
 }

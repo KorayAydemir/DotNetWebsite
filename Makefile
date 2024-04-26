@@ -12,15 +12,12 @@ BACKEND_WWWROOT_DIR := $(BACKEND_DIR)/wwwroot
 
 all: frontend_watch backend_run
 
-npm_install:
-	cd $(FRONTEND_DIR) && npm install
-
-frontend_build:
+fe_build:
 	mkdir -p $(FRONTEND_DIST_DIR)
 	cp -r $(FRONTEND_SRC_DIR)/* $(FRONTEND_DIST_DIR)
-	cd $(FRONTEND_SRC_DIR) && npm run build
+	cd frontend & npm run build
 
-backend_run:
+be_run:
 	cd $(BACKEND_DIR) && dotnet run &
 
 move_files:
@@ -28,7 +25,7 @@ move_files:
 	cp -r $(FRONTEND_DIST_DIR)/* $(BACKEND_WWWROOT_DIR)
 
 frontend_watch:
-	nodemon --watch $(FRONTEND_SRC_DIR) --exec 'make move_files && make frontend_build' -e 'html css js'
+	npx nodemon --watch $(FRONTEND_SRC_DIR) --exec 'make fe_build && make move_files' -e 'html css js'
 
 clean:
 	rm -rf $(BACKEND_WWWROOT_DIR)

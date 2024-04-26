@@ -2,5 +2,9 @@
 .git/
 Dockerfile
 frontend/node_modules
+forntend/package.json
+frontend/dist
 backend/wwwroot
 backend/publish
+backend/bin
+backend/obj

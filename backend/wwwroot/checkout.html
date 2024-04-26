@@ -2,10 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>ecommerce</title>
-        <script src="./index.js" defer></script>
-        <link href="./tailwind.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Satın Al</title>
+        <link href="./tailwind/index.css" rel="stylesheet" />
     </head>
     <body class="bg-[#0e0f10]">
         <header
@@ -124,111 +123,6 @@
             </div>
         </header>
 
-        <section class="mt-6">
-            <div class="mx-auto lg:max-w-[1590px] sm:max-w-[700px] px-4 pb-8">
-                <div class="flex flex-col">
-                    <div
-                        class="py-4 px-2 flex flex-row justify-between items-center"
-                    >
-                        <h2 class="font-bold text-white text-xl mb-2 inline">
-                            New (500)
-                        </h2>
-                        <div class="flex">
-                            <div class="flex flex-row mr-2">
-                                <span class="text-white mr-1">Filters</span
-                                ><svg
-                                    stroke="currentColor"
-                                    fill="currentColor"
-                                    stroke-width="0"
-                                    viewBox="0 0 512 512"
-                                    class="text-white text-xl my-auto"
-                                    height="1em"
-                                    width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M16 120h480v48H16zm80 112h320v48H96zm96 112h128v48H192z"
-                                    ></path>
-                                </svg>
-                            </div>
-                            <div class="flex flex-row inline">
-                                <span class="text-white mr-1">Sort By</span
-                                ><svg
-                                    stroke="currentColor"
-                                    fill="currentColor"
-                                    stroke-width="0"
-                                    viewBox="0 0 24 24"
-                                    class="text-white text-xl my-auto"
-                                    height="1em"
-                                    width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <g>
-                                        <path
-                                            fill="none"
-                                            d="M0 0h24v24H0z"
-                                        ></path>
-                                        <path
-                                            d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"
-                                        ></path>
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-row">
-                        <aside
-                            class="flex flex-col w-1/6 ml-auto px-2 text-white lg:block hidden"
-                        >
-                            <div
-                                class="max-h-80 overflow-y-scroll leading-loose"
-                            >
-                                <div class="font-bold">smartphones</div>
-                                <div class="font-bold">laptops</div>
-                                <div class="font-bold">fragrances</div>
-                                <div class="font-bold">skincare</div>
-                                <div class="font-bold">groceries</div>
-                                <div class="font-bold">home-decoration</div>
-                            </div>
-                            <div
-                                class="before:absolute before:-top-3 before:left-0 before:w-full before:h-[1px] before:bg-white relative mt-12 w-11/12"
-                            >
-                                <div class="flex justify-between">
-                                    <h3 class="font-bold text-lg m-0">
-                                        Gender
-                                    </h3>
-                                    <svg
-                                        stroke="currentColor"
-                                        fill="currentColor"
-                                        stroke-width="0"
-                                        viewBox="0 0 24 24"
-                                        class="my-auto text-xl"
-                                        height="1em"
-                                        width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <g>
-                                            <path
-                                                fill="none"
-                                                d="M0 0h24v24H0z"
-                                            ></path>
-                                            <path
-                                                d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"
-                                            ></path>
-                                        </g>
-                                    </svg>
-                                </div>
-                            </div>
-                        </aside>
-                        <div
-                            id="products"
-                            class="flex-1 grid grid-cols-1 gap-y-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 m-0"
-                        ></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <div
             id="basket-modal"
             class="hidden fixed top-[7vh] mx-auto inset-x-0 sm:w-[600px] w-[450px] bg-slate-800 px-2 rounded-md z-20 text-white overflow-y-auto h-4/6"
@@ -265,5 +159,82 @@
             id="backdrop"
             class="z-10 bg-black absolute w-screen h-screen inset-0 opacity-40 hidden"
         ></div>
+
+        <div class="mt-8 mx-auto lg:max-w-[1200px] sm:max-w-[700px] px-4 pb-8">
+            <section class="w-1/2">
+                <div class="flex flex-col">
+                    <h2 class="text-white text-lg pb-4">
+                        Siparişinizi nasıl almak istersiniz ?
+                    </h2>
+                    <div
+                        class="flex h-36 flex-col justify-between text-slate-100"
+                    >
+                        <label
+                            class="relative h-16 bg-bgColor rounded-lg flex items-center outline outline-white outline-2 has-[:checked]:bg-violet-800 has-[:checked]:outline-violet-500 has-[:checked]:outline-4"
+                        >
+                            <input
+                                class="hidden"
+                                type="radio"
+                                name="orderType"
+                                id="cargo"
+                            />
+                            <span class="px-4">Kargo ile almak istiyorum</span>
+                        </label>
+                        <label
+                            class="relative h-16 bg-bgColor rounded-lg flex items-center outline outline-white outline-2 has-[:checked]:bg-violet-800 has-[:checked]:outline-violet-500 has-[:checked]:outline-4"
+                        >
+                            <input
+                                class="hidden"
+                                type="radio"
+                                name="orderType"
+                                id="take-away"
+                            />
+                            <span class="px-4"
+                                >Kendim gelip almak istiyorum</span
+                            >
+                        </label>
+                    </div>
+                </div>
+            </section>
+            <section class="w-1/2 pt-8">
+                <h2>Adınızı ve adresinizi giriniz</h2>
+                <form>
+                    <input
+                        class="w-full h-12 bg-bgColor rounded-lg text-white outline outline-white outline-2 p-4 peer"
+                        type="text"
+                        name="name"
+                        placeholder="Adınız"
+                        required
+                    />
+                    <input
+                        class="w-full h-12 bg-bgColor rounded-lg text-white outline outline-white outline-2 mt-4 p-4 peer"
+                        type="text"
+                        name="surname"
+                        placeholder="Soyadınız"
+                        required
+                    />
+                    <input
+                        class="w-full h-12 bg-bgColor rounded-lg text-white outline outline-white outline-2 mt-4 p-4 peer"
+                        type="text"
+                        name="address"
+                        placeholder="Adresiniz"
+                        required
+                    />
+                    <input
+                        class="w-full h-12 bg-bgColor rounded-lg text-white outline outline-white outline-2 mt-4 p-4 peer"
+                        type="text"
+                        name="phone"
+                        placeholder="Telefon Numaranız"
+                        required
+                    />
+                    <button
+                        class="py-4 flex items-center justify-center bg-white opacity-100 w-full rounded-full mt-8 font-bold peer-invalid:opacity-30"
+                        type="submit"
+                    >
+                        Continue
+                    </button>
+                </form>
+            </section>
+        </div>
     </body>
 </html>
