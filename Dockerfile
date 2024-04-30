@@ -12,7 +12,8 @@ COPY /backend/*.csproj .
 RUN dotnet restore
 
 COPY /backend .
-COPY --from=fe /app/ ./wwwroot
+COPY --from=fe /app/src ./wwwroot/src
+COPY --from=fe /app/public ./wwwroot/public
 
 RUN dotnet publish -c release -o /published --no-restore
 

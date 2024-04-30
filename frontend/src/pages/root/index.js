@@ -310,3 +310,7 @@ document.getElementById('clear-basket').addEventListener('click', () => {
 //            break;
 //    }
 //})
+
+class AppDrawer extends HTMLElement {
+
+}
